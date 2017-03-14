@@ -446,3 +446,11 @@
      height:0;
     clear: both;
 }
+.modal-img
+{
+    width:100%;
+}
+.modal-img1
+{
+    margin-top:15px;
+}

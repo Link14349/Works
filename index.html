@@ -130,7 +130,7 @@
                             <div class="row">
                                 <div class="col-md-4" style="margin-top:20px">
                                     <div class="image-box3">
-                                        <img src="网页简历/images/index/坦克大战.jpg" class="img-size">
+                                        <img src="网页简历/images/index/坦克大战.jpg" class="img-size" >
                                         <div class="shelter3">
                                             <span class="shelter3-text">坦克大战</span>
                                             <img src="网页简历/images/index/camera.png" class="shelter-img">
@@ -138,21 +138,63 @@
                                     </div>
                                 </div>
                                 <div class="col-md-4" style="margin-top:20px">
-                                    <div class="image-box2">
+                                    <div class="image-box2" data-toggle="modal" data-target="#myModa2">
                                         <img src="网页简历/images/index/蜻蜓.jpg" class="img-size">
                                         <div class="shelter2">
                                             <span class="shelter2-text">PS图片</span>
                                             <img src="网页简历/images/index/camera.png" class="shelter-img">
                                         </div>
                                     </div>
+                                    <!--模态框-->
+
+                                    <div class="modal fade" id="myModa2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                                        &times;
+                                                    </button>
+                                                    <h4 class="modal-title" id="myModalLabe2">
+                                                        PS图片
+                                                    </h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                   <img src="媒体文件/蜻蜓荷花.jpg" class="modal-img">
+                                                    <img src="媒体文件/Doge.jpg" class="modal-img modal-img1">
+                                                </div>
+                                            </div><!-- /.modal-content -->
+                                        </div><!-- /.modal -->
+                                    </div>
                                 </div>
                                 <div class="col-md-4" style="margin-top:20px">
-                                    <div class="image-box1">
-                                        <img src="网页简历/images/index/视频.jpg" class="img-size">
+                                    <div class="image-box1" data-toggle="modal" data-target="#myModal">
+                                        <img src="网页简历/images/index/视频.jpg" class="img-size" >
                                         <div class="shelter1">
                                             <span class="shelter1-text">AE视频</span>
                                             <img src="网页简历/images/index/camera.png" class="shelter-img">
                                         </div>
+                                    </div>
+
+                                    <!--模态框-->
+
+                                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                                        &times;
+                                                    </button>
+                                                    <h4 class="modal-title" id="myModalLabel">
+                                                      AE视频
+                                                    </h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                <video controls style="width:100%;">
+                                                        <source src="媒体文件/AE视频.mp4" type="video/mp4">
+                                                    </video>
+                                                </div>
+                                            </div><!-- /.modal-content -->
+                                        </div><!-- /.modal -->
                                     </div>
                                 </div>
                             </div>
@@ -211,6 +253,7 @@
         </ul>
 </div>
 <script src="网页简历/jq/jquery-2.2.4.min.js"></script>
+<script src="网页简历/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 <script src="网页简历/script/index/js.js"></script>
 </body>
 </html>
