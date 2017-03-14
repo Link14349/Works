@@ -30,8 +30,14 @@ $(function(){
     $("#tel").click(function(){
         $("body").animate({"scrollTop":"2200px"},1000);
     });
+    $("#topText1").click(function(){
+        $("body").animate({"scrollTop":"1200px"},1000);
+    });
     $("#myWork").click(function(){
         $("body").animate({"scrollTop":"1200px"},1000);
+    });
+    $("#topText2").click(function(){
+        $("body").animate({"scrollTop":"2200px"},1000);
     });
     $("#skill").click(function(){
         $("body").animate({"scrollTop":"450px"},1000);
@@ -39,4 +45,5 @@ $(function(){
     $("#aboutMe").click(function(){
         $("body").animate({"scrollTop":"0"},1000);
     });
+
 });
