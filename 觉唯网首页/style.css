@@ -58,14 +58,13 @@
 #container:hover .arrow { display: block;}
 #prev { left: 10px;}
 #next { right:10px;}
-.container{width:600px;height:400px;position: relative;border: 1px solid #ccc;overflow: hidden;}
 .imgBox{list-style-type:none;width:4800px;height: 400px;position: absolute;  }
 .imgBox li{float: left; }
 .imgBox li img{width:600px;height: 280px;}
-.bt1{width:200px;height:30px;position: absolute; top:85%;left: 35%;list-style-type: none;}
-.bt1 li{width:15px;height: 15px;border-radius: 15px;background-color: darkgrey;float: left;margin-right: 10px;}
+.bt1{width:200px;height:30px;position: absolute; bottom:0;left: 50%;list-style-type: none;margin-left:-60px;}
+.bt1 li{width:15px;height: 15px;border-radius: 15px;background-color: darkgrey;float: left;margin-right: 10px;border:2px solid white;}
 .bt1 li:hover{cursor: pointer;}
-.bt1 .select{background-color:coral;}
+.bt1 .select{background-color:coral;border:2px solid white;}
 .pre{display:none;position: absolute;top:35%;left:2%;font-size: 40px;color:white;font-weight: bold;background-color: rgba(0,0,0,0.3);width: 50px;height:80px;text-align: center; line-height: 80px;}
 .next{display:none;position: absolute;top:35%;right:2%;font-size: 40px;color:white;font-weight: bold;background-color: rgba(0,0,0,0.3);width: 50px;height:80px;text-align: center; line-height: 80px;}
 .pre:hover,.next:hover{background-color: rgba(0,0,0,0.8);cursor: pointer;}
@@ -150,7 +149,7 @@
   .content_box3 ul li:hover   .content_box3_title{top:205px;}
   .content_box3 ul li:hover    .content_box3_filter img{width:30px;height:30px;opacity:1;}
   .content_box3_an{width:320px;height:50px;background:#00C3B6;float:left;margin:80px 0 0 410px;  border-radius:18px;-webkit-transition:all 0.3s linear;}
-    .content_box3_an a{text-decoration:none;color:#FFF;display:inline-block;margin:13px 0 0 40px;float:left;}
+    .content_box3_an a{text-decoration:none;color:#FFF;display:inline-block;margin:15px 0 0 40px;float:left;}
 	.content_box3_an img{width:30px;height:30px; margin:11px 0 0 10px;;}
 	.content_box3_an:hover{background:#F69;}
 	.content_box4{width:100%;height:200px; }

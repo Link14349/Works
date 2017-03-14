@@ -6,6 +6,7 @@ window.onload=function(){
     var buttons=document.getElementById("bt1").getElementsByTagName("li");
     var pre=document.getElementById("pre");
     var next=document.getElementById("next");
+    var container=document.getElementById("container");
     var index=0;
     var myIndex;
     var moveDistance;
@@ -19,17 +20,17 @@ window.onload=function(){
     var width=document.documentElement.scrollWidth;
     var mask;
     var loginBox;
-    var bt=document.getElementById("dl");
     pre.onclick=function()
     {
         if(index==0)
         {
-            index=5;
+            index=4;
         }
         else
         {
             index-=1;
         }
+        addColor()
         if(!flag) {
             imgBoxMove(600);
             addColor();
@@ -39,14 +40,17 @@ window.onload=function(){
     next.onclick=function()
     {
 
-        if(index==5)
+        if(index==4)
         {
             index=0;
+
         }
         else
         {
             index+=1;
+
         }
+        addColor()
         if(!flag)
         {
             addColor();
@@ -54,35 +58,38 @@ window.onload=function(){
         }
 
     }
-    imgBox.onmouseover=function(){
+    container.onmouseover=function(){
         clearInterval(timer);
     }
-    imgBox.onmouseout=function(){
+    container.onmouseout=function(){
         autoMove();
     }
     function autoMove()
     {
-        timer=setInterval("next.onclick()",2000);
+
+            timer = setInterval("next.onclick()", 3000);
+
     }
     autoMove();
-    function clickBt()
+    (function clickBt()
     {
         for(var i=0;i<buttons.length;i++)
         {
             buttons[i].onclick=function(){
+                if(this.className==="select")
+                {
+                    return;
+                }
                 myIndex=parseInt(this.getAttribute("index"));
-                moveDistance=(myIndex-index)*-600;
+                moveDistance=(myIndex-index)*600;
                 index=myIndex;
                 if(!flag) {
                     imgBoxMove(moveDistance);
                     addColor();
                 }
-                //console.log(myIndex)
-                console.log(index)
             }
         }
-    }
-    clickBt();
+    })();
     function addColor()
     {
         for(var i=0;i<buttons.length;i++)
@@ -97,9 +104,10 @@ window.onload=function(){
     }
     function transition(offset)
     {
-        time=2000;
+        time=3000;
         inteval=100;
         speed=offset/(time/inteval);
+        flag=true;
         if ( (speed > 0 && parseInt(imgBox.style.left) < newLeft ) || (speed < 0 && parseInt(imgBox.style.left) >newLeft))
         {
             imgBox.style.left = parseInt(imgBox.style.left) + speed + 'px';
@@ -110,13 +118,13 @@ window.onload=function(){
         {
             flag=false;
             imgBox.style.left= newLeft+"px";
-            if(newLeft<-3600)
+            if(newLeft<-3000)
             {
                 imgBox.style.left=-600+"px";
             }
             if(newLeft>-600)
             {
-                imgBox.style.left=-3600+"px";
+                imgBox.style.left=-3000+"px";
             }
         }
     }
@@ -127,29 +135,5 @@ window.onload=function(){
         transition(offset);
 
     }
-    bt.onclick=function(){
-        show();
-        return false;
-    }
-    function show()
-    {
-         mask=document.createElement("div");
-        mask.className="mask";
-        mask.style.width=width+"px";
-        mask.style.height=height+"px";
-        document.body.appendChild(mask);
-        loginBox=document.createElement("div");
-        loginBox.className="login";
-        loginBox.innerHTML= "<div class='loginContent'><div id='loginTop'><span>µÇÂ¼</span></div><div id='loginBottom'><form><input type='text' placeholder='ÇëÊäÈëÕËºÅ'><br/><input type='password' placeholder='ÇëÊäÈëÃÜÂë'><br/><input type='checkbox'>×Ô¶¯µÇÂ¼<a href='#?'>Íü¼ÇÃÜÂë£¿</a><br/> <input type='button' value='Á¢¼´×¢²á'><input type='submit' value='µÇÂ¼'> </form><div id='loginBottomRight'><span>É¨¶þÎ¬Âë¿ìËÙµÇÂ¼</span><img src='images/¶þÎ¬Âë2.jpg'/> </div>  </div> <div id='close'></div></div>";
-        document.body.appendChild(loginBox);
-        var  close=document.getElementById("close");
-        close.onclick=function(){
-            document.body.removeChild(mask);
-            document.body.removeChild(loginBox);
-        }
-    }
-
-
-
 
 }
