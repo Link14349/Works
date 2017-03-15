@@ -2,7 +2,6 @@
  * Created by Administrator on 2016/8/18.
  */
 $(function(){
-
     var mySkillTop=document.getElementById("mySkill").offsetTop;
     var introduce=document.getElementById("introduce").offsetTop;
     var works=document.getElementById("works").offsetTop;
