@@ -2,8 +2,6 @@
  * Created by Administrator on 2016/8/21.
  */
 window.onload=function(){
- imageLocation("picBox","box");
-    setInterval(setHeight,50);
     var json={"data":[{"src":"images/waterfall/0b6df10f7656999c8b8907cb1878ad63605405069042-ex5Mwt_fw658.jpg"},
         {"src":"images/waterfall/0d8b7229a8685278524580b976ef2c0d2ec252b6c6b94-ZBYfG0_fw658.jpg"},
         {"src":"images/waterfall/3f3f8982b9014a90d7c9cdd1ab773912b21bee8b.jpg"},
@@ -40,89 +38,86 @@ window.onload=function(){
         {"src":"images/waterfall/rBACE1Oa8qXCrix1AAD4B1O1Qi0526.jpg"},
 
     ]}
-    function setHeight(){
-        var container=document.getElementById("picBox");
-        var boxArr=getBox(container,"box");
-        var lastBox=boxArr[boxArr.length-1].offsetTop+boxArr[boxArr.length-1].offsetHeight;
-        var wrap=document.getElementById("wrap");
-        var wrapTop=wrap.offsetTop;
-        wrap.style.height=lastBox-wrapTop+"px";
-    }
     window.onscroll=function(){
         if(flag())
         {
-           var container=document.getElementById("picBox");
-            for(var i=0;i<json.data.length;i++)
-            {
-                var box=document.createElement("div");
-                box.className="box";
-                container.appendChild(box);
-                var borderBox=document.createElement("div");
-                borderBox.className="borderBox";
+            var picBox=document.getElementById("picBox");
+            for(var i=0;i<json.data.length;i++) {
+                var box = document.createElement("div");
+                box.className = "box";
+                var borderBox = document.createElement("div");
+                borderBox.className = "borderBox";
                 box.appendChild(borderBox);
-                var img=document.createElement("img");
-                img.src=json.data[i].src;
+                var img = document.createElement("img");
+                img.src =json.data[i].src;
                 borderBox.appendChild(img);
+                picBox.appendChild(box);
+            }
+            imagesLocation();
+        }
+    }
+    function flag()
+    {
+        var boxArr=getBox("box");
+        var scrollTop=document.documentElement.scrollTop||document.body.scrollTop;
+        var lastImgTop=boxArr[boxArr.length-1].offsetTop;
+        if(scrollTop>lastImgTop-180)
+        {
+
+            return true;
+        }
+    }
+    function imagesLocation()
+    {
+        var boxArr=getBox("box");
+        var picBox=document.getElementById("picBox");
+        var height=new Array();
+        var screenWidth=document.documentElement.clientWidth||document.body.clientWidth;
+        var boxWidth=boxArr[0].offsetWidth;
+        var cols=Math.floor(screenWidth/boxWidth);
+        picBox.style.cssText="width:"+cols*boxWidth+"px;margin:0 auto;"
+        for(var i=0;i<boxArr.length;i++)
+        {
+            if(i<cols)
+            {
+                height.push(boxArr[i].offsetHeight);
+            }
+            else
+            {
+                var minIndex=getMinHeightIndex(height);
+                var minHeight=Math.min.apply(null,height);
+                boxArr[i].style.position="absolute";
+                boxArr[i].style.top=minHeight+"px";
+                boxArr[i].style.left=boxArr[minIndex].offsetLeft+"px";
+                height[minIndex]+=boxArr[i].offsetHeight;
+            }
+        }
+    }
+    imagesLocation();
+    function getMinHeightIndex(height)
+    {
+        var minHeight=Math.min.apply(null,height);
+        for(var i=0;i<height.length;i++)
+        {
+            if(height[i]===minHeight)
+            {
+                return i;
+            }
+        }
+    }
+    function getBox(box){
+        var picBox=document.getElementById("picBox");
+        var allChildren=picBox.getElementsByTagName("*");
+        var boxArr=new Array();
+        for(var i=0;i<allChildren.length;i++)
+        {
+            if(allChildren[i].className==="box")
+            {
+                boxArr.push(allChildren[i]);
 
             }
-            imageLocation("picBox","box");
         }
-    }
-}
-function flag(){
-  var container=document.getElementById("picBox");
-    var boxArr=getBox(container,"box");
-    var lastHeight=boxArr[boxArr.length-1].offsetTop;
-    var scrollTop=document.documentElement.scrollTop||document.body.scrollTop;
-    var clientHeight=document.documentElement.clientHeight||document.body.clientHeight;
-    if(lastHeight<scrollTop+clientHeight)
-    {
-        return true;
-    }
-}
-function imageLocation(container,box)
-{
-    var container=document.getElementById(container);
-    var boxArr=getBox(container,box);
-    var imgwidth=boxArr[0].offsetWidth;
-    var screenWidth=document.body.clientWidth||document.documentElement.clientWidth;
-    var cols=parseInt(screenWidth/imgwidth);
-    var heightArray=[];
-    container.style.cssText="width:"+cols*imgwidth+"px;margin:0 auto;";
-    for(var i=0;i<boxArr.length;i++)
-    {
-        if(i<cols)
-        {heightArray[i]=boxArr[i].offsetHeight;}
-        else
-        {
-            var minHeight=Math.min.apply(null,heightArray);
-            var index=getIndex(minHeight,heightArray);
-            boxArr[i].style.position="absolute";
-            boxArr[i].style.top=minHeight+"px";
-            boxArr[i].style.left=boxArr[index].offsetLeft+"px";
-            heightArray[index]=heightArray[index]+boxArr[i].offsetHeight;
-        }
+        return boxArr;
     }
 
-}
-function getIndex(minHeight,heightArr)
-{
-    for(var i=0;i<heightArr.length;i++)
-    {
-        if(heightArr[i]==minHeight)
-        return i;
-    }
-}
-function getBox(container,box)
-{
-    var boxArr=new Array();
-    var allContent=container.getElementsByTagName("*");
-    for(var i=0;i<allContent.length;i++)
-    {
-        if(allContent[i].className==box)
-        {
-            boxArr.push(allContent[i]);
-        }
-    }
-    return boxArr;
 }
