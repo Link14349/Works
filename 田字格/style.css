@@ -57,8 +57,7 @@
 h1{
     font-size:50px;
     color:red;
-    position:fixed;
-    left:5%;
+    position: absolute;
 }
 #canvas{
     border:10px solid rgb(230,11,9);
