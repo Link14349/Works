@@ -1,0 +1,71 @@
+web fire v1.0 API 手册
+
+文件说明:
+	img文件夹:
+		包含一些开发中常用的图，如outText.png(可以作为文本输出域使用)。
+	js文件夹:
+		放置引擎需要的js文件，其中，index.js文件是游戏onload时执行的文件，是总文件。
+	text文件夹:
+		放置API手册，以及引擎介绍。
+	注意：这个API需要与jQuery库配合使用！
+
+game obj函数操作:
+	1.role(image,width,height,x,y,angle,name,pos)
+		这个函数可以向网页中的指定位置添加game objective,通过设置image属性、width、height等属性，以在网页上呈现出程序员需要的game objective
+	2.gameObj.update()
+		这个函数可以将游戏对象中的属性添加至UI部分
+	3.gameObj.change(newImage,newWidth,newHeight,angle)
+		这个函数可以改变game objective的属性，以改变其UI层的属性
+	4.gameObj.setText(text,color,size,weight,anlign)
+		这个函数可以设置game objective的文字属性，并设置文字样式
+	5.gameObj.define(att,val)
+		这个函数可以让程序员给game objective自定义属性，方便编码时使用
+	6.gameObj.get(attName)
+		这个函数可以返回程序员自定义的属性
+	7.gameObj.copy()
+		这个函数可以拷贝自己的game objective，并在网页上呈现出拷贝的game objective。(命名方式:自己“父亲”的名字+自己“父亲”的儿子数量)
+	8.gameObj.delete()
+		这个函数可以删除game objective,将其从UI上删除，并将所有属性赋值为null
+	9.gameObj.addMove()
+		这个函数可以为game objective添加move所必须的属性
+	10.gameObj.setMove(speed)
+		这个函数可以改变game objective的速度
+	11.gameObj.addPosZ()
+		这个函数可以提供game objective的z坐标，即css中的z-index属性
+	12.gameObj.setPosZ(z)
+		这个函数可以改变game objective的z坐标
+	13.gameObj.run(angle)
+		这个函数可以使game objective旋转angle度，再移动speed步
+	14.gameObj.move(x,y)
+		这个函数可以使game objective移动到(x,y)的位置上
+
+物理函数操作:
+	1.collision(gameObj1,gameObj2)
+		这个函数可以判断两个游戏对象是否碰撞在一起，是返回true,否返回false
+	2.collision(gameObj1)
+		这个函数可以获得所以碰撞gameObj1的game objective
+	3.rebound(gameObj1,gameObj2)
+		这个函数可以在gameObj1与gameObj2碰撞在一起时进行反弹功能
+	4.reboundUpdate(gameObj)
+		这个函数可以查看所有game objective，然后进行物理运算
+	5.addPhysics(gameObj)
+		这个函数可以为对象绑定物理属性，方便以后进行物理处理
+	6.airUpdate(gameObj)
+		这个函数可以根据空气阻力改变game objective的速度
+	7.gravUpdate(gameObj)
+		这个函数可以根据引力阻力改变game objective的速度与方向
+	8.physics(obj)
+		这个函数可以综合控制game objective的物理属性
+	9.physicsUpdate(acc)
+		这个函数可以刷新所有game objective的物理属性,并每隔acc秒刷新一次(stop id:physicsId)
+
+总工能函数操作:
+	1.UIupdate(acc)
+		这个函数可以不断刷新UI界面，并且刷新间隔为acc毫秒。游戏一加载进来引擎就会执行acc为100毫秒的UIupdate。(stop id:updateId)
+
+附件:
+	stop id操作:
+		使用clearInterval(stopId)可以停止刷新
+
+mode by yhzheng@2018
+
