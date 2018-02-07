@@ -25,7 +25,6 @@ var role = function (image,width,height,x,y,angle,name,pos) {
 
     obj.update = function () {
         $("#" + this.name).css({
-                "display": "block",
                 "background-image": "url(" + this.image + ")",
                 "position": "absolute",
                 "top": this.y + "px",
@@ -78,6 +77,7 @@ var role = function (image,width,height,x,y,angle,name,pos) {
         return newObj;
     };
     obj.delete = function (){
+    	console.log("delete");
         this.width = null;
         this.height = null;
         this.image = null;
@@ -99,11 +99,17 @@ var role = function (image,width,height,x,y,angle,name,pos) {
     obj.setMove = function (speed) {
         this.define("speed",speed);
     };
+    obj.updatePos = function () {
+        $("#" + this.name).css({
+            "z-index": this.get("pos-z"),
+        });
+    };
     obj.addPosZ = function () {
         this.define("pos-z",gameObjs.length);
     };
     obj.setPosZ = function (z) {
         this.define("pos-z",z);
+        this.updatePos();
     };
     obj.run = function (angle) {
         var x = $("#" + this.name).offset().left;
@@ -117,6 +123,17 @@ var role = function (image,width,height,x,y,angle,name,pos) {
         this.x = x;
         this.y = y;
         this.update();
+    };
+    obj.AIrun = function (angle,rm){
+    	setInterval(function () {
+    		obj.run(angle);
+    		if (obj.x <= 0){
+    			if (rm){
+    				obj.delete();
+    				return;
+    			}
+    		}
+    	},100);
     };
 
     gameObjs.push(obj);
